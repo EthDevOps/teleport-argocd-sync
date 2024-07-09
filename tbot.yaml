@@ -1,0 +1,16 @@
+version: v2
+onboarding:
+  token: 123456abc
+  join_method: token
+storage:
+  type: directory
+  path: /var/lib/teleport/bot
+  symlinks: try-secure
+  acls: try
+debug: false
+proxy_server: teleport.example.com
+certificate_ttl: 24h
+renewal_interval: 20m0s
+oneshot: true
+fips: false
+outputs: []

@@ -4,6 +4,10 @@ This allows teleport k8s clusters to be used with argocd. The tool will take car
 
 ## Configuration
 
+You need to create a teleport bot and pass the token to the syncer
+
+as the token is only valid once you need to mount a volume to `/var/lib/teleport` to persist the new certs
+
 ### General
 
 Basic configuration is done via environment variables
@@ -12,6 +16,7 @@ Basic configuration is done via environment variables
 - `ARGOCD_USERNAME` - ArgoCD username 
 - `ARGOCD_PASSWORD` - ArgoCD password 
 - `TELEPORT_DOMAIN` - Domain of your teleport instance
+- `TELEPORT_TOKEN` - The inital join token for the Teleport Bot
 
 ### Clusters
 

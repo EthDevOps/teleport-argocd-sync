@@ -15,6 +15,7 @@ RUN curl -sSL -o /usr/bin/argocd https://github.com/argoproj/argo-cd/releases/la
 RUN curl https://goteleport.com/static/install.sh | bash -s 16.0.4 oss
 
 COPY sync.sh /usr/local/bin/sync.sh
+COPY tbot.yaml /etc/tbot.yaml
 RUN chmod +x /usr/local/bin/sync.sh
 
-
+CMD ["bash", "-c", "/usr/local/bin/sync.sh"]
