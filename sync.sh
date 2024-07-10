@@ -36,8 +36,11 @@ yq '.clusters[].name' /config/clusters.yaml | while read -r CLUSTER; do
   yq -i ".users[0].user.client-key = \"/k8s-configs/${CLUSTER}/client-key.pem\"" /k8s-configs/${CLUSTER}/kubeconfig.yaml
   yq -i ".users[0].user.client-certificate = \"/k8s-configs/${CLUSTER}/client-cert.pem\"" /k8s-configs/${CLUSTER}/kubeconfig.yaml
 
-  echo "$LABELS"
+  echo "Replace URL in kubeconfig..."
+  yq -i ".clusters[0].cluster.server = \"https://${CLUSTER}.${TELEPORT_DOMAIN}\"" /k8s-configs/${CLUSTER}/kubeconfig.yaml
+
 
   echo "Register Cluster with ArgoCD.."
   argocd --grpc-web cluster add -y --upsert ${LABELS} --kubeconfig /k8s-configs/${CLUSTER}/kubeconfig.yaml --name ${CLUSTER} ${TELEPORT_DOMAIN}-${CLUSTER}
+  echo "done."
 done;
