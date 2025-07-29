@@ -12,7 +12,7 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
 RUN curl -sSL -o /usr/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-${TARGETARCH} && chmod +x /usr/bin/argocd
 
 # install teleport cli
-RUN curl https://goteleport.com/static/install.sh | bash -s 18.1.0 oss
+RUN curl https://teleport.ethquokkaops.io/scripts/install.sh | bash
 
 COPY sync.sh /usr/local/bin/sync.sh
 COPY tbot.yaml /etc/tbot.yaml
